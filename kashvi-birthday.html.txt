@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Kashvi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    background: rgba(255,255,255,0.18);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    max-width: 420px;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.heart {
+    font-size: 3em;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+#countdown {
+    font-size: 1.4em;
+    margin: 15px 0;
+}
+
+.cake {
+    font-size: 4em;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff4f7a;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Falling Hearts */
+.falling-heart {
+    position: absolute;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    color: rgba(255,255,255,0.8);
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="heart">❤️</div>
+    <h1>Happy Birthday Kashvi 🎉</h1>
+
+    <p>
+        Kashvi, you are the reason my heart smiles.  
+        Every moment with you feels special.  
+        Today is all about **you**, my love 💕  
+        May your life be filled with happiness and dreams come true.
+    </p>
+
+    <div id="countdown"></div>
+
+    <div class="cake">🎂</div>
+
+    <p><strong>— Yours, forever ❤️</strong></p>
+
+    <button onclick="playMusic()">Play Your Song 🎶</button>
+</div>
+
+<!-- 🎵 Background Music (Man Mera instrumental) -->
+<audio id="music" loop>
+    <source src="https://pagalfree.com/musics/128-Man%20Mera%20-%20Table%20No%2021%20128%20Kbps.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 🎶 Play Music
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+// ⏳ Countdown (CHANGE DATE)
+const birthday = new Date("2025-12-19T00:00:00").getTime();
+
+const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = birthday - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "🎉 It’s Kashvi’s Birthday! 🎉";
+        clearInterval(timer);
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+        `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s left`;
+}, 1000);
+
+// 💖 Falling Hearts Generator
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("falling-heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
